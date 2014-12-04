@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+      <idnTable:infData
+       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
+        <idnTable:domain>
+          <idnTable:name valid="true">idn1.example
+          </idnTable:name>
+          <idnTable:aname>xn--idn1.example</idnTable:aname>
+          <idnTable:table>
+            <idnTable:name>THAI</idnTable:name>
+            <idnTable:type>script</idnTable:type>
+            <idnTable:description lang="en">Thai
+            </idnTable:description>
+            <idnTable:variantGen>false</idnTable:variantGen>
+          </idnTable:table>
+        </idnTable:domain>
+      </idnTable:infData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54321-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>

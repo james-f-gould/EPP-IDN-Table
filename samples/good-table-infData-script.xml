@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+      <idnTable:infData
+       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
+        <idnTable:table>
+           <idnTable:name>THAI</idnTable:name>
+           <idnTable:type>script</idnTable:type>
+           <idnTable:description>Thai</idnTable:description>
+           <idnTable:version>1.0</idnTable:version>
+           <idnTable:effectiveDate>2014-11-24
+           </idnTable:effectiveDate>
+           <idnTable:variantGen>false</idnTable:variantGen>
+           <idnTable:url>
+  https://www.iana.org/domains/idn-tables/tables/tld_thai_1.0.txt
+           </idnTable:url>
+           <idnTable:codePoint>
+             <idnTable:point>0E01</idnTable:point>
+             <idnTable:comment>THAI LETTER KO KAI
+             </idnTable:comment>
+           </idnTable:codePoint>
+           <idnTable:codePoint>
+             <idnTable:point>0E02</idnTable:point>
+           </idnTable:codePoint>          
+           <idnTable:codeRange>
+             <idnTable:from>0030</idnTable:from>
+             <idnTable:to>0039</idnTable:to>
+           </idnTable:codeRange>          
+         </idnTable:table>
+      </idnTable:infData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54321-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>

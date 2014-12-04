@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+      <idnTable:infData
+       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
+        <idnTable:list>
+           <idnTable:table>CHI</idnTable:table>
+           <idnTable:table>JPN</idnTable:table>
+           <idnTable:table>THAI</idnTable:table>
+         </idnTable:list>
+      </idnTable:infData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54321-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>
