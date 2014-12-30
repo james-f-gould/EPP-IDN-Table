@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="US-ASCII"?>
-<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rfc PUBLIC "-//IETF//DTD RFC 2629//EN"
+ "http://xml.resource.org/authoring/rfc2629.dtd" [
 <!-- One method to get references from the online citation libraries.
      There has to be one entity for each item to be referenced. 
      An alternate method (rfc include) is described in the references. -->
@@ -94,7 +95,7 @@
       </address>
     </author>
 
-    <author fullname="Luis Enrique Munoz" initials="L.M" surname="Munoz">
+    <author fullname="Luis Enrique Muñoz" initials="L.M" surname="Muñoz">
       <organization>Uniregistry Corp.</organization>
 
       <address>
@@ -243,6 +244,13 @@
         Table information associated with the domain name.  The Domain Name 
         MUST be represented as either a U-label or A-label as defined in <xref target="RFC5890"/>.</t>
         
+        <t>An optional attribute "form" MAY be used to specify the representation.
+          When present, the "form" attribute MUST be set to either "aLabel" or "uLabel"
+          depending on the chosen representation for the domain name.</t>
+        
+        <t>In absence of the "form" attribute, domain names are assumed to be in A-label
+          representation.</t>
+        
       </section> 
  
     </section>
@@ -290,8 +298,10 @@ C:  <command>
 C:    <check>
 C:      <idnTable:check
 C:       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
-C:        <idnTable:domain>idn1.example</idnTable:domain>
-C:        <idnTable:domain>idn2.example</idnTable:domain>
+C:        <idnTable:domain
+C:         form="uLabel">idn1.example</idnTable:domain>
+C:        <idnTable:domain
+C:         form="aLabel">idn2.example</idnTable:domain>
 C:        <idnTable:domain>idn3.example</idnTable:domain>
 C:      </idnTable:check>
 C:    </check>

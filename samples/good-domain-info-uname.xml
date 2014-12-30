@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+<epp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.0 ../xsd/epp-1.0.xsd urn:ietf:params:xml:ns:idnTable-1.0 ../xsd/idnTable-1.0.xsd"
+ xmlns="urn:ietf:params:xml:ns:epp-1.0">
   <command>
     <check>
       <idnTable:info
        xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
-        <idnTable:domain>idn1.example</idnTable:domain>
+        <idnTable:domain form="uLabel">idn1.example</idnTable:domain>
       </idnTable:info>
     </check>
     <clTRID>ABC-12345</clTRID>

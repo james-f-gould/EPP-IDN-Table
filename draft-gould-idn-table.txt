@@ -81,10 +81,10 @@ Table of Contents
      2.1.  IDN Table Identifier  . . . . . . . . . . . . . . . . . .   4
      2.2.  Domain Name . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  EPP Command Mapping . . . . . . . . . . . . . . . . . . . . .   4
-     3.1.  EPP Query Commands  . . . . . . . . . . . . . . . . . . .   4
+     3.1.  EPP Query Commands  . . . . . . . . . . . . . . . . . . .   5
        3.1.1.  EPP <check> Command . . . . . . . . . . . . . . . . .   5
          3.1.1.1.  Domain Check Form . . . . . . . . . . . . . . . .   5
-         3.1.1.2.  Table Check Form  . . . . . . . . . . . . . . . .   7
+         3.1.1.2.  Table Check Form  . . . . . . . . . . . . . . . .   8
        3.1.2.  EPP <info> Command  . . . . . . . . . . . . . . . . .   9
          3.1.2.1.  Domain Info Form  . . . . . . . . . . . . . . . .   9
          3.1.2.2.  Table Info Form . . . . . . . . . . . . . . . . .  13
@@ -202,18 +202,18 @@ Internet-Draft                 idnTableMap                 December 2014
    MUST be represented as either a U-label or A-label as defined in
    [RFC5890].
 
+   An optional attribute "form" MAY be used to specify the
+   representation.  When present, the "form" attribute MUST be set to
+   either "aLabel" or "uLabel" depending on the chosen representation
+   for the domain name.
+
+   In absence of the "form" attribute, domain names are assumed to be in
+   A-label representation.
+
 3.  EPP Command Mapping
 
    A detailed description of the EPP syntax and semantics can be found
    in the EPP core protocol specification [RFC5730].
-
-3.1.  EPP Query Commands
-
-   EPP provides three commands to retrieve object information: <check>
-   to determine if an object is known to the server, <info> to retrieve
-   detailed information associated with an object, and <transfer> to
-   retrieve object transfer status information.
-
 
 
 
@@ -225,6 +225,13 @@ Gould, et al.             Expires June 7, 2015                  [Page 4]
 
 Internet-Draft                 idnTableMap                 December 2014
 
+
+3.1.  EPP Query Commands
+
+   EPP provides three commands to retrieve object information: <check>
+   to determine if an object is known to the server, <info> to retrieve
+   detailed information associated with an object, and <transfer> to
+   retrieve object transfer status information.
 
 3.1.1.  EPP <check> Command
 
@@ -249,6 +256,32 @@ Internet-Draft                 idnTableMap                 December 2014
        contain the fully qualified names of the domain objects, as
        defined in Section 2.2, to validate.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gould, et al.             Expires June 7, 2015                  [Page 5]
+
+Internet-Draft                 idnTableMap                 December 2014
+
+
    Example Domain Check Form <check> command with three IDN domain
    names:
 
@@ -258,8 +291,10 @@ Internet-Draft                 idnTableMap                 December 2014
    C:    <check>
    C:      <idnTable:check
    C:       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
-   C:        <idnTable:domain>idn1.example</idnTable:domain>
-   C:        <idnTable:domain>idn2.example</idnTable:domain>
+   C:        <idnTable:domain
+   C:         form="uLabel">idn1.example</idnTable:domain>
+   C:        <idnTable:domain
+   C:         form="aLabel">idn2.example</idnTable:domain>
    C:        <idnTable:domain>idn3.example</idnTable:domain>
    C:      </idnTable:check>
    C:    </check>
@@ -272,15 +307,6 @@ Internet-Draft                 idnTableMap                 December 2014
    that identifies the idnTable namespace.  The <idnTable:chkData>
    element in the Domain Check Form contain one or more
    <idnTable:domain> elements that contain the following child elements:
-
-
-
-
-
-Gould, et al.             Expires June 7, 2015                  [Page 5]
-
-Internet-Draft                 idnTableMap                 December 2014
-
 
    <idnTable:name>  The fully qualified name of the domain object, as
        defined in Section 2.2.  The element MUST contain a "valid"
@@ -304,6 +330,14 @@ Internet-Draft                 idnTableMap                 December 2014
        the client; an OPTIONAL "lang" attribute MAY be present to
        identify the language if the negotiated value is something other
        than the default value of "en" (English).
+
+
+
+Gould, et al.             Expires June 7, 2015                  [Page 6]
+
+Internet-Draft                 idnTableMap                 December 2014
+
+
    <idnTable:table>  Zero or more OPTIONAL <idnTable:table> elements
        that contain the server defined IDN Table Identifier, as defined
        in Section 2.1, that matches the code points of the
@@ -313,30 +347,6 @@ Internet-Draft                 idnTableMap                 December 2014
        MAY be used as the value of the <idnTable:table> element of the
        Table Info Form (Section 3.1.2.2) <info> command, as described in
        Section 3.1.2, to retrieve more information about the IDN Table.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Gould, et al.             Expires June 7, 2015                  [Page 6]
-
-Internet-Draft                 idnTableMap                 December 2014
-
 
    Example Domain Check Form <check> response with three IDN domain
    names:
@@ -377,6 +387,13 @@ Internet-Draft                 idnTableMap                 December 2014
    S:  </response>
    S:</epp>
 
+
+
+Gould, et al.             Expires June 7, 2015                  [Page 7]
+
+Internet-Draft                 idnTableMap                 December 2014
+
+
 3.1.1.2.  Table Check Form
 
    The Table Check Form is used to check the existence of a IDN
@@ -385,15 +402,6 @@ Internet-Draft                 idnTableMap                 December 2014
 
    In addition to the standard EPP command elements, the <check> command
    MUST contain an <idnTable:check> element that identifies the
-
-
-
-
-Gould, et al.             Expires June 7, 2015                  [Page 7]
-
-Internet-Draft                 idnTableMap                 December 2014
-
-
    idnTable namespace.  The <idnTable:check> elements in the Table Check
    Form contain the following child elements:
 
@@ -431,14 +439,6 @@ Internet-Draft                 idnTableMap                 December 2014
        existence of the IDN Table Identifier.  A value of "1" or "true"
        means that the IDN Table Identifier exists.  A value of "0" or
        "false" means that the IDN Table Identifier does not exist.
-
-
-
-
-
-
-
-
 
 
 
