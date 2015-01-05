@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <schema targetNamespace="urn:ietf:params:xml:ns:idnTable-1.0"
   xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0"
-  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0" xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0" 
+  xmlns="http://www.w3.org/2001/XMLSchema"
   elementFormDefault="qualified">
 
   <annotation>
@@ -13,7 +13,8 @@
   </annotation>
 
   <!-- imports -->
-  <import namespace="urn:ietf:params:xml:ns:eppcom-1.0" schemaLocation="eppcom-1.0.xsd"/>
+  <import namespace="urn:ietf:params:xml:ns:eppcom-1.0" 
+    schemaLocation="eppcom-1.0.xsd"/>
 
   <!-- 
   Child elements found in EPP commands.  
@@ -22,27 +23,38 @@
   <element name="info" type="idnTable:infoType"/>
 
   <!-- 
-  Child elements of check command.  
-  -->
+   Form of the domain name.
+   -->
   <simpleType name="domainFormType">
     <restriction base="token">
       <enumeration value="aLabel"/>
       <enumeration value="uLabel"/>
     </restriction>
   </simpleType>
+
+  <!--
+   Domain label element.
+  -->
+  <complexType name="domainLabelType">
+    <simpleContent>
+      <extension base="eppcom:labelType">
+        <attribute name="form" type="idnTable:domainFormType"
+          default="aLabel"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  
+
+  <!-- 
+  Child elements of check command.  
+  -->
   <complexType name="checkType">
     <sequence>
       <choice>
-        <element name="table" type="eppcom:minTokenType" maxOccurs="unbounded"/>
-        <element name="domain" maxOccurs="unbounded">
-          <complexType>
-            <simpleContent>
-              <extension base="eppcom:labelType">
-                <attribute name="form" type="idnTable:domainFormType"/>
-              </extension>
-            </simpleContent>
-          </complexType>
-        </element>
+        <element name="table" type="eppcom:minTokenType" 
+          maxOccurs="unbounded"/>
+        <element name="domain" type="idnTable:domainLabelType" 
+          maxOccurs="unbounded"/>
       </choice>
     </sequence>
   </complexType>
@@ -55,15 +67,7 @@
     <sequence>
       <choice>
         <element name="table" type="eppcom:minTokenType"/>
-        <element name="domain">
-          <complexType>
-            <simpleContent>
-              <extension base="eppcom:labelType">
-                <attribute name="form" type="idnTable:domainFormType"/>
-              </extension>
-            </simpleContent>
-          </complexType>
-        </element>
+        <element name="domain" type="idnTable:domainLabelType"/>
         <element name="list"/>
       </choice>
     </sequence>
@@ -82,8 +86,10 @@
   <complexType name="chkDataType">
     <sequence>
       <choice>
-        <element name="table" type="idnTable:chkTableType" maxOccurs="unbounded"/>
-        <element name="domain" type="idnTable:chkDomainType" maxOccurs="unbounded"/>
+        <element name="table" type="idnTable:chkTableType" 
+          maxOccurs="unbounded"/>
+        <element name="domain" type="idnTable:chkDomainType" 
+          maxOccurs="unbounded"/>
       </choice>
     </sequence>
   </complexType>
@@ -120,7 +126,8 @@
       <element name="name" type="idnTable:domainNameType"/>
       <choice>
         <element name="reason" type="eppcom:reasonType"/>
-        <element name="table" type="eppcom:minTokenType" maxOccurs="unbounded"/>
+        <element name="table" type="eppcom:minTokenType" 
+          maxOccurs="unbounded"/>
       </choice>
     </sequence>
   </complexType>
@@ -155,7 +162,8 @@
   <complexType name="codePointType">
     <sequence>
       <element name="point" type="token"/>
-      <element name="comment" type="idnTable:descriptionType" minOccurs="0"/>
+      <element name="comment" type="idnTable:descriptionType" 
+        minOccurs="0"/>
     </sequence>
   </complexType>
 
@@ -166,7 +174,8 @@
     <sequence>
       <element name="from" type="token"/>
       <element name="to" type="token"/>
-      <element name="comment" type="idnTable:descriptionType" minOccurs="0"/>
+      <element name="comment" type="idnTable:descriptionType" 
+        minOccurs="0"/>
     </sequence>
   </complexType>
 
@@ -208,7 +217,8 @@
         <element name="uname" type="eppcom:labelType"/>
         <element name="aname" type="eppcom:labelType"/>
       </choice>
-      <element name="table" type="idnTable:infDomainTableType" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="table" type="idnTable:infDomainTableType" 
+        minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
   </complexType>
 
@@ -230,7 +240,8 @@
   -->
   <complexType name="infListType">
     <sequence>
-      <element name="table" type="eppcom:minTokenType" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="table" type="eppcom:minTokenType" 
+        minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
   </complexType>
 

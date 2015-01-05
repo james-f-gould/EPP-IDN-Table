@@ -405,12 +405,12 @@
 <link href="#rfc.authors" rel="Chapter"/>
 
 
-  <meta name="generator" content="xml2rfc version 2.4.5 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.4.8 - http://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Gould, J., Obispo, F., Mu&#241;oz, L., and P. Faltstrom" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gould-idn-table-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2014-12-4" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-1-5" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for getting Internationalized Domain Name (IDN) Table information for the registration of IDN domain names, using the EPP domain name mapping, and optionally with the IDN mapping extension.  An IDN Table defines the valid set of characters (code points) that can be used in a domain name.  Code points may overlap across IDN Tables and the IDN Tables supported by the servers are up to server policy." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for getting Internationalized Domain Name (IDN) Table information for the registration of IDN domain names, using the EPP domain name mapping, and optionally with the IDN mapping extension.  An IDN Table defines the valid set of characters (code points) that can be used in a domain name.  Code points may overlap across IDN Tables and the IDN Tables supported by the servers are up to server policy." />
 
@@ -434,7 +434,7 @@
   <td class="right">F. Obispo</td>
 </tr>
 <tr>
-  <td class="left">Expires: June 7, 2015</td>
+  <td class="left">Expires: July 9, 2015</td>
   <td class="right">L. Mu&#241;oz</td>
 </tr>
 <tr>
@@ -451,7 +451,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">December 4, 2014</td>
+  <td class="right">January 5, 2015</td>
 </tr>
 
     	
@@ -472,11 +472,11 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on June 7, 2015.</p>
+<p>This Internet-Draft will expire on July 9, 2015.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
-<p>Copyright (c) 2014 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>Copyright (c) 2015 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
 
   
@@ -541,9 +541,8 @@
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> <a href="#idnTableIdentifier" id="idnTableIdentifier">IDN Table Identifier</a></h1>
 <p id="rfc.section.2.1.p.1">The IDN Table Identifier is a server-defined unique value for an IDN Table object.  It is represented using an &lt;idnTable:table&gt; element or an &lt;idnTable:name&gt; element.  The IDN Table Identifier is used in the &lt;check&gt; and &lt;info&gt; commands and responses.  The IDN Table Identifer MAY also be used as the value for the <a href="#I-D.ietf-eppext-idnmap">IDN mapping extension</a> <cite title="NONE">[I-D.ietf-eppext-idnmap]</cite> &lt;idn:table&gt; element with a domain create of an IDN domain object.</p>
 <h1 id="rfc.section.2.2"><a href="#rfc.section.2.2">2.2.</a> <a href="#domainName" id="domainName">Domain Name</a></h1>
-<p id="rfc.section.2.2.p.1">Domain Names are used to enable validating the code points against the server IDN Tables and IDN policies and for retrieving IDN Table information associated with the domain name.  The Domain Name MUST be represented as either a U-label or A-label as defined in <a href="#RFC5890">[RFC5890]</a>.</p>
-<p id="rfc.section.2.2.p.2">An optional attribute "form" MAY be used to specify the representation.  When present, the "form" attribute MUST be set to either "aLabel" or "uLabel" depending on the chosen representation for the domain name.</p>
-<p id="rfc.section.2.2.p.3">In absence of the "form" attribute, domain names are assumed to be in A-label representation.</p>
+<p id="rfc.section.2.2.p.1">A Domain Name, as represented by an &lt;idnTable:domain&gt; element, is used to enable validating the code points against the server IDN Tables and IDN policies and for retrieving IDN Table information associated with the domain name.  The Domain Name MUST be represented as either a U-label or A-label as defined in <a href="#RFC5890">[RFC5890]</a>.</p>
+<p id="rfc.section.2.2.p.2">An OPTIONAL attribute "form" MAY be used to specify the representation.  When present, the "form" attribute MUST be set to either "aLabel" for A-label or "uLabel" for U-label, depending on the chosen representation for the domain name.  The default "form" attribute is "aLabel" for A-label.</p>
 <h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#commands" id="commands">EPP Command Mapping</a></h1>
 <p id="rfc.section.3.p.1">A detailed description of the EPP syntax and semantics can be found in the EPP core protocol specification <a href="#RFC5730">[RFC5730]</a>.</p>
 <h1 id="rfc.section.3.1"><a href="#rfc.section.3.1">3.1.</a> <a href="#queryCommands" id="queryCommands">EPP Query Commands</a></h1>
@@ -1054,13 +1053,12 @@ S:&lt;/epp&gt;</pre>
 <pre>
 BEGIN
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-
 &lt;schema targetNamespace="urn:ietf:params:xml:ns:idnTable-1.0"
   xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0"
-  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
+  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0" 
   xmlns="http://www.w3.org/2001/XMLSchema"
   elementFormDefault="qualified"&gt;
-  
+
   &lt;annotation&gt;
     &lt;documentation&gt;
       Extensible Provisioning Protocol v1.0
@@ -1069,8 +1067,8 @@ BEGIN
   &lt;/annotation&gt;
 
   &lt;!-- imports --&gt;
-  &lt;import namespace="urn:ietf:params:xml:ns:eppcom-1.0"
-       schemaLocation="eppcom-1.0.xsd"/&gt;
+  &lt;import namespace="urn:ietf:params:xml:ns:eppcom-1.0" 
+    schemaLocation="eppcom-1.0.xsd"/&gt;
 
   &lt;!-- 
   Child elements found in EPP commands.  
@@ -1079,15 +1077,38 @@ BEGIN
   &lt;element name="info" type="idnTable:infoType"/&gt;
 
   &lt;!-- 
+   Form of the domain name.
+   --&gt;
+  &lt;simpleType name="domainFormType"&gt;
+    &lt;restriction base="token"&gt;
+      &lt;enumeration value="aLabel"/&gt;
+      &lt;enumeration value="uLabel"/&gt;
+    &lt;/restriction&gt;
+  &lt;/simpleType&gt;
+
+  &lt;!--
+   Domain label element.
+  --&gt;
+  &lt;complexType name="domainLabelType"&gt;
+    &lt;simpleContent&gt;
+      &lt;extension base="eppcom:labelType"&gt;
+        &lt;attribute name="form" type="idnTable:domainFormType"
+          default="aLabel"/&gt;
+      &lt;/extension&gt;
+    &lt;/simpleContent&gt;
+  &lt;/complexType&gt;
+  
+
+  &lt;!-- 
   Child elements of check command.  
   --&gt;
   &lt;complexType name="checkType"&gt;
     &lt;sequence&gt;
       &lt;choice&gt;
-        &lt;element name="table" type="eppcom:minTokenType"
-           maxOccurs="unbounded"/&gt;
-        &lt;element name="domain" type="eppcom:labelType" 
-           maxOccurs="unbounded"/&gt;
+        &lt;element name="table" type="eppcom:minTokenType" 
+          maxOccurs="unbounded"/&gt;
+        &lt;element name="domain" type="idnTable:domainLabelType" 
+          maxOccurs="unbounded"/&gt;
       &lt;/choice&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
@@ -1100,17 +1121,17 @@ BEGIN
     &lt;sequence&gt;
       &lt;choice&gt;
         &lt;element name="table" type="eppcom:minTokenType"/&gt;
-        &lt;element name="domain" type="eppcom:labelType"/&gt;
+        &lt;element name="domain" type="idnTable:domainLabelType"/&gt;
         &lt;element name="list"/&gt;
       &lt;/choice&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
-   
-   
+
+
   &lt;!-- 
   Child response elements.  
   --&gt;
-  &lt;element name="chkData" type="idnTable:chkDataType"/&gt;    
+  &lt;element name="chkData" type="idnTable:chkDataType"/&gt;
   &lt;element name="infData" type="idnTable:infDataType"/&gt;
 
   &lt;!-- 
@@ -1119,10 +1140,10 @@ BEGIN
   &lt;complexType name="chkDataType"&gt;
     &lt;sequence&gt;
       &lt;choice&gt;
-        &lt;element name="table" type="idnTable:chkTableType"
-           maxOccurs="unbounded"/&gt;
+        &lt;element name="table" type="idnTable:chkTableType" 
+          maxOccurs="unbounded"/&gt;
         &lt;element name="domain" type="idnTable:chkDomainType" 
-           maxOccurs="unbounded"/&gt;
+          maxOccurs="unbounded"/&gt;
       &lt;/choice&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
@@ -1133,27 +1154,24 @@ BEGIN
   &lt;complexType name="chkTableType"&gt;
     &lt;simpleContent&gt;
       &lt;extension base="eppcom:minTokenType"&gt;
-        &lt;attribute name="exists" type="boolean"
-         use="required"/&gt;
+        &lt;attribute name="exists" type="boolean" use="required"/&gt;
       &lt;/extension&gt;
     &lt;/simpleContent&gt;
   &lt;/complexType&gt;
 
-  
+
   &lt;!-- 
   Domain name check response element  
   --&gt;
   &lt;complexType name="domainNameType"&gt;
     &lt;simpleContent&gt;
       &lt;extension base="eppcom:labelType"&gt;
-        &lt;attribute name="valid" type="boolean"
-         use="required"/&gt;
-        &lt;attribute name="idnmap" type="boolean"
-         default="true"/&gt;
+        &lt;attribute name="valid" type="boolean" use="required"/&gt;
+        &lt;attribute name="idnmap" type="boolean" default="true"/&gt;
       &lt;/extension&gt;
     &lt;/simpleContent&gt;
   &lt;/complexType&gt;
-  
+
   &lt;!-- 
   Domain check response element  
   --&gt;
@@ -1163,11 +1181,11 @@ BEGIN
       &lt;choice&gt;
         &lt;element name="reason" type="eppcom:reasonType"/&gt;
         &lt;element name="table" type="eppcom:minTokenType" 
-        maxOccurs="unbounded"/&gt;
+          maxOccurs="unbounded"/&gt;
       &lt;/choice&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
-  
+
 
   &lt;!-- 
   Child elements of info response.  
@@ -1175,24 +1193,21 @@ BEGIN
   &lt;complexType name="infDataType"&gt;
     &lt;sequence&gt;
       &lt;choice&gt;
-        &lt;element name="table" 
-          type="idnTable:infTableType"/&gt;
-        &lt;element name="domain" 
-          type="idnTable:infDomainType"/&gt;
-        &lt;element name="list" 
-          type="idnTable:infListType"/&gt;
+        &lt;element name="table" type="idnTable:infTableType"/&gt;
+        &lt;element name="domain" type="idnTable:infDomainType"/&gt;
+        &lt;element name="list" type="idnTable:infListType"/&gt;
       &lt;/choice&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
-   
+
   &lt;!-- 
   Table types  
   --&gt;
   &lt;simpleType name="tableTypeEnumType"&gt;
-     &lt;restriction base="token"&gt;
-        &lt;enumeration value="language"/&gt;
-        &lt;enumeration value="script"/&gt;
-     &lt;/restriction&gt;
+    &lt;restriction base="token"&gt;
+      &lt;enumeration value="language"/&gt;
+      &lt;enumeration value="script"/&gt;
+    &lt;/restriction&gt;
   &lt;/simpleType&gt;
 
   &lt;!-- 
@@ -1202,9 +1217,9 @@ BEGIN
     &lt;sequence&gt;
       &lt;element name="point" type="token"/&gt;
       &lt;element name="comment" type="idnTable:descriptionType" 
-      minOccurs="0"/&gt;
+        minOccurs="0"/&gt;
     &lt;/sequence&gt;
-  &lt;/complexType&gt;  
+  &lt;/complexType&gt;
 
   &lt;!-- 
   Table IDN code point range.
@@ -1214,9 +1229,9 @@ BEGIN
       &lt;element name="from" type="token"/&gt;
       &lt;element name="to" type="token"/&gt;
       &lt;element name="comment" type="idnTable:descriptionType" 
-      minOccurs="0"/&gt;
+        minOccurs="0"/&gt;
     &lt;/sequence&gt;
-  &lt;/complexType&gt;  
+  &lt;/complexType&gt;
 
   &lt;complexType name="descriptionType"&gt;
     &lt;simpleContent&gt;
@@ -1225,8 +1240,8 @@ BEGIN
       &lt;/extension&gt;
     &lt;/simpleContent&gt;
   &lt;/complexType&gt;
-   
-   
+
+
   &lt;!-- 
   Table info response information
   --&gt;
@@ -1238,14 +1253,14 @@ BEGIN
       &lt;element name="version" type="token" minOccurs="0"/&gt;
       &lt;element name="effectiveDate" type="date" minOccurs="0"/&gt;
       &lt;element name="variantGen" type="boolean" minOccurs="0"/&gt;
-      &lt;element name="url"  type="anyURI" minOccurs="0"/&gt;
+      &lt;element name="url" type="anyURI" minOccurs="0"/&gt;
       &lt;choice minOccurs="0" maxOccurs="unbounded"&gt;
         &lt;element name="codePoint" type="idnTable:codePointType"/&gt;
         &lt;element name="codeRange" type="idnTable:codeRangeType"/&gt;
       &lt;/choice&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
-      
+
   &lt;!-- 
   Domain info response information
   --&gt;
@@ -1253,14 +1268,14 @@ BEGIN
     &lt;sequence&gt;
       &lt;element name="name" type="idnTable:domainNameType"/&gt;
       &lt;choice minOccurs="0"&gt;
-         &lt;element name="uname" type="eppcom:labelType"/&gt;
-         &lt;element name="aname" type="eppcom:labelType"/&gt;
+        &lt;element name="uname" type="eppcom:labelType"/&gt;
+        &lt;element name="aname" type="eppcom:labelType"/&gt;
       &lt;/choice&gt;
-      &lt;element name="table" type="idnTable:infDomainTableType"
-         minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;element name="table" type="idnTable:infDomainTableType" 
+        minOccurs="0" maxOccurs="unbounded"/&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
-  
+
   &lt;!-- 
   Domain table info response information
   --&gt;
@@ -1272,19 +1287,19 @@ BEGIN
       &lt;element name="variantGen" type="boolean" minOccurs="0"/&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
-  
+
 
   &lt;!-- 
   Table list info response information.
   --&gt;
   &lt;complexType name="infListType"&gt;
     &lt;sequence&gt;
-      &lt;element name="table" type="eppcom:minTokenType"
-         minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;element name="table" type="eppcom:minTokenType" 
+        minOccurs="0" maxOccurs="unbounded"/&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
-   
-&lt;!-- End of schema.--&gt;   
+
+  &lt;!-- End of schema.--&gt;
 &lt;/schema&gt;
 END</pre>
 <h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#IANA" id="IANA">IANA Considerations</a></h1>
