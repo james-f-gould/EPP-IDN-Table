@@ -196,6 +196,7 @@
       <element name="name" type="eppcom:minTokenType"/>
       <element name="type" type="idnTable:tableTypeEnumType"/>
       <element name="description" type="idnTable:descriptionType"/>
+      <element name="upDate" type="dateTime"/>
       <element name="version" type="token" minOccurs="0"/>
       <element name="effectiveDate" type="date" minOccurs="0"/>
       <element name="variantGen" type="boolean" minOccurs="0"/>
@@ -240,8 +241,18 @@
   -->
   <complexType name="infListType">
     <sequence>
-      <element name="table" type="eppcom:minTokenType" 
+      <element name="table" type="idnTable:infListTableType" 
         minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  
+  <!--
+  Table elements in list info form.
+  -->
+  <complexType name="infListTableType">
+    <sequence>
+      <element name="name" type="eppcom:minTokenType"/>
+      <element name="upDate" type="dateTime"/>
     </sequence>
   </complexType>
 

@@ -5,11 +5,11 @@
 Network Working Group                                           J. Gould
 Internet-Draft                                            VeriSign, Inc.
 Intended status: Standards Track                               F. Obispo
-Expires: July 9, 2015                                           L. Munoz
+Expires: August 8, 2015                                         L. Munoz
                                                        Uniregistry Corp.
                                                             P. Faltstrom
 
-                                                         January 5, 2015
+                                                        February 4, 2015
 
 
   Extensible Provisioning Protocol (EPP) Internationalized Domain Name
@@ -20,18 +20,16 @@ Abstract
 
    This document describes an Extensible Provisioning Protocol (EPP)
    mapping for getting Internationalized Domain Name (IDN)
-   Table information for the registration of IDN domain names, using the
-   EPP domain name mapping, and optionally with the IDN mapping
-   extension.  An IDN Table defines the valid set of characters (code
-   points) that can be used in a domain name.  Code points may overlap
-   across IDN Tables and the IDN Tables supported by the servers are up
-   to server policy.
+   Table information for the registration of IDNs, using the EPP domain
+   name mapping, and optionally with the IDN mapping extension.  An IDN
+   Table defines the valid set of characters (code points) that can be
+   used in a domain name.  Code points may overlap across IDN Tables and
+   the IDN Tables supported by the servers are up to server policy.
 
-   The IDN Table information can be used to validate an IDN domain name
-   prior to registration, can be cached by the client for pre-
-   validation, can be used to select the best IDN Table for the domain
-   name, and can be used to know if and what IDN Table Identifier to
-   pass in a domain create.
+   The IDN Table information can be used to validate an IDN prior to
+   registration, can be cached by the client for pre-validation, can be
+   used to select the best IDN Table for the IDN, and can be used to
+   know if and what IDN Table Identifier to pass in a domain create.
 
 Status of This Memo
 
@@ -48,14 +46,16 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 9, 2015.
+   This Internet-Draft will expire on August 8, 2015.
 
 
 
 
-Gould, et al.             Expires July 9, 2015                  [Page 1]
+
+
+Gould, et al.            Expires August 8, 2015                 [Page 1]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
 Copyright Notice
@@ -90,17 +90,17 @@ Table of Contents
          3.1.2.2.  Table Info Form . . . . . . . . . . . . . . . . .  13
          3.1.2.3.  List Info Form  . . . . . . . . . . . . . . . . .  18
        3.1.3.  EPP <transfer> Command  . . . . . . . . . . . . . . .  19
-     3.2.  EPP Transform Commands  . . . . . . . . . . . . . . . . .  19
-       3.2.1.  EPP <create> Command  . . . . . . . . . . . . . . . .  19
+     3.2.  EPP Transform Commands  . . . . . . . . . . . . . . . . .  20
+       3.2.1.  EPP <create> Command  . . . . . . . . . . . . . . . .  20
        3.2.2.  EPP <delete> Command  . . . . . . . . . . . . . . . .  20
        3.2.3.  EPP <renew> Command . . . . . . . . . . . . . . . . .  20
        3.2.4.  EPP <transfer> Command  . . . . . . . . . . . . . . .  20
        3.2.5.  EPP <update> Command  . . . . . . . . . . . . . . . .  20
    4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  20
-     4.1.  Allocation Token Extension Schema . . . . . . . . . . . .  20
+     4.1.  IDN Table Mapping Schema  . . . . . . . . . . . . . . . .  21
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  26
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .  26
-   7.  Normative References  . . . . . . . . . . . . . . . . . . . .  26
+   7.  Normative References  . . . . . . . . . . . . . . . . . . . .  27
    Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  27
      A.1.  Version 00  . . . . . . . . . . . . . . . . . . . . . . .  27
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  27
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Gould, et al.             Expires July 9, 2015                  [Page 2]
+Gould, et al.            Expires August 8, 2015                 [Page 2]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
 1.  Introduction
@@ -119,29 +119,29 @@ Internet-Draft                 idnTableMap                  January 2015
    This document describes an extension mapping for version 1.0 of the
    Extensible Provisioning Protocol (EPP) [RFC5730].  This EPP mapping
    provides Internationalized Domain Name (IDN) Table information for
-   the registration of IDN domain names, using the EPP domain name
-   mapping [RFC5731], and optionally with the IDN mapping extension
+   the registration of IDNs, using the EPP domain name mapping
+   [RFC5731], and optionally with the IDN mapping extension
    [I-D.ietf-eppext-idnmap].  An IDN Table defines the valid set of
    characters (code points) that can be used in a domain name.  Code
    points may overlap across IDN Tables and the IDN Tables supported by
    the servers are up to server policy.  This mapping provides the
-   information clients need to register IDN domain names across a
-   variety of servers with differing IDN policies.  The IDN
-   Table Mapping can be used for the following:
+   information clients need to register IDNs across a variety of servers
+   with differing IDN policies.  The IDN Table Mapping can be used for
+   the following:
 
-   Validate IDN Domain Name  Validate that a IDN domain name meets the
-       server IDN policy.  The validation can be done prior to
-       submitting a domain create, per [RFC5731].
-   Get IDN Tables Matching IDN Domain Name Along with Meta-Data  Since
+   "Validate IDN Domain Name"  Validate that an IDN meets the server IDN
+       policy.  The validation can be done prior to submitting a domain
+       create, per [RFC5731].
+   "Get IDN Tables Matching IDN Domain Name Along with Meta-Data"  Since
        IDN Table code points may overlap, the mapping can be used to
        identify the matching set of IDN Tables (language or script),
        along with the IDN Table meta-data.
-   Cache IDN Table Code Points  Clients can query for the complete list
-       of IDN Tables and can get the IDN Table meta-data and optionally
-       the code points, based on server policy, to support pre-
-       validation in the client.
-   Get the IDN Table Identifier to Pass with a Domain Create  Each IDN T
-       able includes a server unique IDN Table Identifier that may be
+   "Cache IDN Table Code Points"  Clients can query for the complete
+       list of IDN Tables and can get the IDN Table meta-data and
+       optionally the code points, based on server policy, to support
+       pre-validation in the client.
+   "Get the IDN Table Identifier to Pass with a Domain Create"  Each IDN
+       Table includes a server unique IDN Table Identifier that may be
        used as the value of the <idn:table> element in the IDN mapping
        extension [I-D.ietf-eppext-idnmap].  A flag indicates whether the
        IDN mapping extension [I-D.ietf-eppext-idnmap] is needed for the
@@ -165,9 +165,9 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                  [Page 3]
+Gould, et al.            Expires August 8, 2015                 [Page 3]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
    "idnTable-1.0" is used as an abbreviation for
@@ -178,21 +178,21 @@ Internet-Draft                 idnTableMap                  January 2015
 
 2.  Object Attributes
 
-   an EPP IDN Table object has attributes and associated values that can
-   help in the registration of IDN domain names.  This section describes
-   each type in detail.  The formal syntax for the attribute values
-   described here can be found in the "Formal Syntax" section of this
-   document and in the appropriate normative references.
+   An EPP IDN Table object has attributes and associated values that can
+   help in the registration of IDNs.  This section describes each type
+   in detail.  The formal syntax for the attribute values described here
+   can be found in the "Formal Syntax" section of this document and in
+   the appropriate normative references.
 
 2.1.  IDN Table Identifier
 
    The IDN Table Identifier is a server-defined unique value for an IDN
    Table object.  It is represented using an <idnTable:table> element or
    an <idnTable:name> element.  The IDN Table Identifier is used in the
-   <check> and <info> commands and responses.  The IDN Table Identifer
+   <check> and <info> commands and responses.  The IDN Table Identifier
    MAY also be used as the value for the IDN mapping extension
    [I-D.ietf-eppext-idnmap] <idn:table> element with a domain create of
-   an IDN domain object.
+   an IDN object.
 
 2.2.  Domain Name
 
@@ -221,9 +221,9 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                  [Page 4]
+Gould, et al.            Expires August 8, 2015                 [Page 4]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
    detailed information associated with an object, and <transfer> to
@@ -241,7 +241,7 @@ Internet-Draft                 idnTableMap                  January 2015
    the IDN mapping extension [I-D.ietf-eppext-idnmap] is needed with a
    domain <create> command, and provide the matching list of IDN
    Table Identifiers.  This mapping is not intended to determine the
-   availabilty of the domain name.
+   availability of the domain name.
 
    In addition to the standard EPP command elements, the <check> command
    MUST contain an <idnTable:check> element that identifies the
@@ -252,8 +252,7 @@ Internet-Draft                 idnTableMap                  January 2015
        contain the fully qualified names of the domain objects, as
        defined in Section 2.2, to validate.
 
-   Example Domain Check Form <check> command with three IDN domain
-   names:
+   Example Domain Check Form <check> command with three IDNs:
 
    C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
    C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
@@ -274,15 +273,15 @@ Internet-Draft                 idnTableMap                  January 2015
 
    When a <check> command has been processed successfully, the EPP
    <resData> element MUST contain a child <idnTable:chkData> element
-
-
-
-Gould, et al.             Expires July 9, 2015                  [Page 5]
-
-Internet-Draft                 idnTableMap                  January 2015
-
-
    that identifies the idnTable namespace.  The <idnTable:chkData>
+
+
+
+Gould, et al.            Expires August 8, 2015                 [Page 5]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
    element in the Domain Check Form contain one or more
    <idnTable:domain> elements that contain the following child elements:
 
@@ -298,8 +297,8 @@ Internet-Draft                 idnTableMap                  January 2015
        use of the IDN mapping extension [I-D.ietf-eppext-idnmap] with a
        domain create of the domain name.  A value of "1" or "true" means
        that the IDN mapping extension [I-D.ietf-eppext-idnmap] is
-       required using one of the <idnTable:table>.  A value of "0" or
-       "false" means that the IDN mapping extension
+       required using one of the <idnTable:table> values.  A value of
+       "0" or "false" means that the IDN mapping extension
        [I-D.ietf-eppext-idnmap] is not required.
    <idnTable:reason>  OPTIONAL reason that the domain name is not valid.
        If present, this element contains server-specific text to help
@@ -313,8 +312,8 @@ Internet-Draft                 idnTableMap                  January 2015
        in Section 2.1, that matches the code points of the
        <idnTable:name> element.  The <idnTable:table> MAY be used as the
        value of the <idn:table> element in the IDN mapping extension
-       [I-D.ietf-eppext-idnmap] for creating the IDN domain object or
-       MAY be used as the value of the <idnTable:table> element of the
+       [I-D.ietf-eppext-idnmap] for creating the IDN object or MAY be
+       used as the value of the <idnTable:table> element of the
        Table Info Form (Section 3.1.2.2) <info> command, as described in
        Section 3.1.2, to retrieve more information about the IDN Table.
 
@@ -333,13 +332,13 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                  [Page 6]
+
+Gould, et al.            Expires August 8, 2015                 [Page 6]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
-   Example Domain Check Form <check> response with three IDN domain
-   names:
+   Example Domain Check Form <check> response with three IDNs:
 
 
    S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -379,23 +378,21 @@ Internet-Draft                 idnTableMap                  January 2015
 
 3.1.1.2.  Table Check Form
 
-   The Table Check Form is used to check the existence of a IDN
+   The Table Check Form is used to check the existence of an IDN
    Table using the IDN Table Identifier represented by the
    <idnTable:table> element.
 
    In addition to the standard EPP command elements, the <check> command
    MUST contain an <idnTable:check> element that identifies the
+   idnTable namespace.  The <idnTable:check> element in the Table Check
+   Form contains the following child elements:
 
 
 
-
-Gould, et al.             Expires July 9, 2015                  [Page 7]
+Gould, et al.            Expires August 8, 2015                 [Page 7]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
-
-   idnTable namespace.  The <idnTable:check> elements in the Table Check
-   Form contain the following child elements:
 
    <idnTable:table>  One or more <idnTable:table> elements that contain
        the IDN Table Identifier, as defined in Section 2.1, to check for
@@ -445,9 +442,12 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                  [Page 8]
+
+
+
+Gould, et al.            Expires August 8, 2015                 [Page 8]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
    Example Table Check Form <check> response with three IDN
@@ -501,9 +501,9 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                  [Page 9]
+Gould, et al.            Expires August 8, 2015                 [Page 9]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
    <idnTable:domain>  The domain name, as defined in Section 2.2, to
@@ -557,18 +557,18 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                 [Page 10]
+Gould, et al.            Expires August 8, 2015                [Page 10]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
        attribute value that indicates whether the server requires the
        use of the IDN mapping extension [I-D.ietf-eppext-idnmap] with a
        domain create of the domain name.  A value of "1" or "true" means
        that the IDN mapping extension [I-D.ietf-eppext-idnmap] is
-       required using one of the <idnTable:table>.  A value of "0" or
-       "false" means that the IDN mapping extension
-       [I-D.ietf-eppext-idnmap] is not required.
+       required using one of the <idnTable:table> <idnTable:name>
+       values.  A value of "0" or "false" means that the IDN mapping
+       extension [I-D.ietf-eppext-idnmap] is not required.
    <idnTable:uname> or <idnTable:aname>  OPTIONAL U-label or A-label
        form of the domain name value of the <idnTable:name> element in
        the opposite form, as defined in Section 2.2.
@@ -613,9 +613,9 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                 [Page 11]
+Gould, et al.            Expires August 8, 2015                [Page 11]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
    Example Domain Info Form <info> response for a U-label Domain Name:
@@ -669,9 +669,9 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                 [Page 12]
+Gould, et al.            Expires August 8, 2015                [Page 12]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
    Example Domain Info Form <info> response for an A-label Domain Name:
@@ -716,18 +716,18 @@ Internet-Draft                 idnTableMap                  January 2015
 
 3.1.2.2.  Table Info Form
 
-   The Table Info Form is used to retrieve information associated with a
-   IDN Table object.  The information provided meta-data about the IDN
-   Table object along with the OPTIONAL code points.
+   The Table Info Form is used to retrieve information associated with
+   an IDN Table object.  The information provided meta-data about the
+   IDN Table object along with the OPTIONAL code points.
 
    In addition to the standard EPP command elements, the <info> command
    MUST contain an <idnTable:info> element that identifies the
 
 
 
-Gould, et al.             Expires July 9, 2015                 [Page 13]
+Gould, et al.            Expires August 8, 2015                [Page 13]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
    idnTable namespace.  The <idnTable:info> element in the Table Info
@@ -781,9 +781,9 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                 [Page 14]
+Gould, et al.            Expires August 8, 2015                [Page 14]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
    <idnTable:type>  The type of the IDN Table with the possible values
@@ -794,6 +794,8 @@ Internet-Draft                 idnTableMap                  January 2015
        negotiated with the client; an OPTIONAL "lang" attribute MAY be
        present to identify the language if the negotiated value is
        something other than the default value of "en" (English).
+   <idnTable:upDate>  Contains the date and time that the IDN Table was
+       created or last updated.
    <idnTable:version>  OPTIONAL server defined version number of the IDN
        Table.
    <idnTable:effectiveDate>  OPTIONAL effective date for the IDN Table.
@@ -807,7 +809,7 @@ Internet-Draft                 idnTableMap                  January 2015
        elements:
 
 
-       <idnTable:point> or <idnTable:from> and <idnTable:to>  Contains
+       <idnTable:point> or "<idnTable:from> and <idnTable:to>"  Contains
            an individual code point or a code point range.  The code
            point must be expressed in uppercase, hexadecimal, and zero
            padded to a minimum of 4 digits - in other words according to
@@ -824,24 +826,6 @@ Internet-Draft                 idnTableMap                  January 2015
    Table Identifier, which represents a Language IDN Table:
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 15]
-
-Internet-Draft                 idnTableMap                  January 2015
-
-
    S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
    S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
    S:  <response>
@@ -850,12 +834,22 @@ Internet-Draft                 idnTableMap                  January 2015
    S:    </result>
    S:    <resData>
    S:      <idnTable:infData
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 15]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
    S:       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
    S:        <idnTable:table>
    S:           <idnTable:name>CHI</idnTable:name>
    S:           <idnTable:type>language</idnTable:type>
-   S:           <idnTable:description>Chinese (CHI)
+   S:           <idnTable:description lang="en">Chinese (CHI)
    S:           </idnTable:description>
+   S:           <idnTable:upDate>2015-02-04T09:30:00.0Z
+   S:           </idnTable:upDate>
    S:           <idnTable:version>1.0</idnTable:version>
    S:           <idnTable:effectiveDate>2014-11-24
    S:           </idnTable:effectiveDate>
@@ -865,7 +859,8 @@ Internet-Draft                 idnTableMap                  January 2015
    S:           </idnTable:url>
    S:           <idnTable:codePoint>
    S:             <idnTable:point>002D</idnTable:point>
-   S:             <idnTable:comment>HYPHEN-MINUS
+   S:             <idnTable:comment lang="en">
+   S:             HYPHEN-MINUS
    S:             </idnTable:comment>
    S:           </idnTable:codePoint>
    S:           <idnTable:codePoint>
@@ -874,12 +869,13 @@ Internet-Draft                 idnTableMap                  January 2015
    S:           <idnTable:codeRange>
    S:             <idnTable:from>3918</idnTable:from>
    S:             <idnTable:to>396E</idnTable:to>
-   S:             <idnTable:comment>CJK Ideograph Extension A
+   S:             <idnTable:comment lang="en">
+   S:             CJK Ideograph Extension A
    S:             </idnTable:comment>
    S:           </idnTable:codeRange>
    S:           <idnTable:codeRange>
-   S:             <idnTable:from>U+3C6E</idnTable:from>
-   S:             <idnTable:to>U+6BA8</idnTable:to>
+   S:             <idnTable:from>3C6E</idnTable:from>
+   S:             <idnTable:to>6BA8</idnTable:to>
    S:           </idnTable:codeRange>
    S:         </idnTable:table>
    S:      </idnTable:infData>
@@ -893,9 +889,13 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-Gould, et al.             Expires July 9, 2015                 [Page 16]
+
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 16]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
    Example Table Info Form <info> response for the "THAI" IDN
@@ -915,6 +915,8 @@ Internet-Draft                 idnTableMap                  January 2015
    S:           <idnTable:name>THAI</idnTable:name>
    S:           <idnTable:type>script</idnTable:type>
    S:           <idnTable:description>Thai</idnTable:description>
+   S:           <idnTable:upDate>2014-08-16T09:20:00.0Z
+   S:           </idnTable:upDate>
    S:           <idnTable:version>1.0</idnTable:version>
    S:           <idnTable:effectiveDate>2014-11-24
    S:           </idnTable:effectiveDate>
@@ -947,11 +949,9 @@ Internet-Draft                 idnTableMap                  January 2015
 
 
 
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 17]
+Gould, et al.            Expires August 8, 2015                [Page 17]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
 
 3.1.2.3.  List Info Form
@@ -991,24 +991,28 @@ Internet-Draft                 idnTableMap                  January 2015
    that contains the following child elements:
 
    <idnTable:table>  Zero or more <idnTable:table> elements that contain
-       the server defined IDN Table Identifier, as defined in
-       Section 2.1, that is supported by the server.  The
-       <idnTable:table> element value MAY be used as the value of the
-       <idnTable:table> element value in the Table Info Form
-       (Section 3.1.2.2) <info> command to retrieve the information on
-       the IDN Table.
+       the following child elements:
+
+
+       <idnTable:name>  Server defined IDN Table Identifier, as defined
+           in Section 2.1, that is supported by the server.  The
+           <idnTable:table> element value MAY be used as the value of
+           the <idnTable:table> element value in the Table Info Form
+           (Section 3.1.2.2) <info> command to retrieve the information
+           on the IDN Table.
+       <idnTable:upDate>  Contains the date and time that the IDN
+           Table was created or last updated.  This element can be used
 
 
 
-
-
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 18]
+Gould, et al.            Expires August 8, 2015                [Page 18]
 
-Internet-Draft                 idnTableMap                  January 2015
+Internet-Draft                 idnTableMap                 February 2015
 
+
+           to determine whether a client-side cache needs to be
+           refreshed for the IDN Table using the Table Info Form
+           (Section 3.1.2.2).
 
    Example List Info Form <info> response that contains three IDN
    Table Identifiers:
@@ -1024,9 +1028,21 @@ Internet-Draft                 idnTableMap                  January 2015
    S:      <idnTable:infData
    S:       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
    S:        <idnTable:list>
-   S:           <idnTable:table>CHI</idnTable:table>
-   S:           <idnTable:table>JPN</idnTable:table>
-   S:           <idnTable:table>THAI</idnTable:table>
+   S:           <idnTable:table>
+   S:              <idnTable:name>CHI</idnTable:name>
+   S:              <idnTable:upDate>2015-02-04T09:30:00.0Z
+   S:              </idnTable:upDate>
+   S:           </idnTable:table>
+   S:           <idnTable:table>
+   S:              <idnTable:name>JPN</idnTable:name>
+   S:              <idnTable:upDate>2015-01-01T09:40:00.0Z
+   S:              </idnTable:upDate>
+   S:           </idnTable:table>
+   S:           <idnTable:table>
+   S:              <idnTable:name>THAI</idnTable:name>
+   S:              <idnTable:upDate>2014-08-16T09:20:00.0Z
+   S:              </idnTable:upDate>
+   S:           </idnTable:table>
    S:         </idnTable:list>
    S:      </idnTable:infData>
    S:    </resData>
@@ -1042,6 +1058,14 @@ Internet-Draft                 idnTableMap                  January 2015
    Transfer semantics do not apply to IDN table objects, so there is no
    mapping defined for the EPP <transfer> command.
 
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 19]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
 3.2.  EPP Transform Commands
 
    EPP provides five commands to transform objects: <create> to create
@@ -1054,17 +1078,6 @@ Internet-Draft                 idnTableMap                  January 2015
 
    Create semantics do not apply to IDN table objects, so there is no
    mapping defined for the EPP <create> command.
-
-
-
-
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 19]
-
-Internet-Draft                 idnTableMap                  January 2015
-
 
 3.2.2.  EPP <delete> Command
 
@@ -1088,8 +1101,8 @@ Internet-Draft                 idnTableMap                  January 2015
 
 4.  Formal Syntax
 
-   One schema is presented here that is the EPP Allocation Token
-   Extension schema.
+   One schema is presented here that is the EPP IDN Table Mapping
+   schema.
 
    The formal syntax presented here is a complete schema representation
    of the object mapping suitable for automated validation of EPP XML
@@ -1097,7 +1110,19 @@ Internet-Draft                 idnTableMap                  January 2015
    are used to note the beginning and ending of the schema for URI
    registration purposes.
 
-4.1.  Allocation Token Extension Schema
+
+
+
+
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 20]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
+4.1.  IDN Table Mapping Schema
 
    BEGIN
    <?xml version="1.0" encoding="UTF-8"?>
@@ -1113,14 +1138,6 @@ Internet-Draft                 idnTableMap                  January 2015
          IDN Table Mapping.
        </documentation>
      </annotation>
-
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 20]
-
-Internet-Draft                 idnTableMap                  January 2015
-
 
      <!-- imports -->
      <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"
@@ -1155,6 +1172,12 @@ Internet-Draft                 idnTableMap                  January 2015
      </complexType>
 
 
+
+Gould, et al.            Expires August 8, 2015                [Page 21]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
      <!--
      Child elements of check command.
      -->
@@ -1168,14 +1191,6 @@ Internet-Draft                 idnTableMap                  January 2015
          </choice>
        </sequence>
      </complexType>
-
-
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 21]
-
-Internet-Draft                 idnTableMap                  January 2015
 
 
      <!--
@@ -1212,6 +1227,13 @@ Internet-Draft                 idnTableMap                  January 2015
        </sequence>
      </complexType>
 
+
+
+Gould, et al.            Expires August 8, 2015                [Page 22]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
      <!--
      Table check response element
      -->
@@ -1226,14 +1248,6 @@ Internet-Draft                 idnTableMap                  January 2015
 
      <!--
      Domain name check response element
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 22]
-
-Internet-Draft                 idnTableMap                  January 2015
-
-
      -->
      <complexType name="domainNameType">
        <simpleContent>
@@ -1268,6 +1282,14 @@ Internet-Draft                 idnTableMap                  January 2015
            <element name="table" type="idnTable:infTableType"/>
            <element name="domain" type="idnTable:infDomainType"/>
            <element name="list" type="idnTable:infListType"/>
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 23]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
          </choice>
        </sequence>
      </complexType>
@@ -1281,14 +1303,6 @@ Internet-Draft                 idnTableMap                  January 2015
          <enumeration value="script"/>
        </restriction>
      </simpleType>
-
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 23]
-
-Internet-Draft                 idnTableMap                  January 2015
-
 
      <!--
      Table IDN code point.
@@ -1324,12 +1338,21 @@ Internet-Draft                 idnTableMap                  January 2015
 
      <!--
      Table info response information
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 24]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
      -->
      <complexType name="infTableType">
        <sequence>
          <element name="name" type="eppcom:minTokenType"/>
          <element name="type" type="idnTable:tableTypeEnumType"/>
          <element name="description" type="idnTable:descriptionType"/>
+         <element name="upDate" type="dateTime"/>
          <element name="version" type="token" minOccurs="0"/>
          <element name="effectiveDate" type="date" minOccurs="0"/>
          <element name="variantGen" type="boolean" minOccurs="0"/>
@@ -1338,14 +1361,6 @@ Internet-Draft                 idnTableMap                  January 2015
            <element name="codePoint" type="idnTable:codePointType"/>
            <element name="codeRange" type="idnTable:codeRangeType"/>
          </choice>
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 24]
-
-Internet-Draft                 idnTableMap                  January 2015
-
-
        </sequence>
      </complexType>
 
@@ -1379,28 +1394,35 @@ Internet-Draft                 idnTableMap                  January 2015
 
      <!--
      Table list info response information.
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 25]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
      -->
      <complexType name="infListType">
        <sequence>
-         <element name="table" type="eppcom:minTokenType"
+         <element name="table" type="idnTable:infListTableType"
            minOccurs="0" maxOccurs="unbounded"/>
+       </sequence>
+     </complexType>
+
+     <!--
+     Table elements in list info form.
+     -->
+     <complexType name="infListTableType">
+       <sequence>
+         <element name="name" type="eppcom:minTokenType"/>
+         <element name="upDate" type="dateTime"/>
        </sequence>
      </complexType>
 
      <!-- End of schema.-->
    </schema>
    END
-
-
-
-
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 25]
-
-Internet-Draft                 idnTableMap                  January 2015
-
 
 5.  IANA Considerations
 
@@ -1425,13 +1447,24 @@ Internet-Draft                 idnTableMap                  January 2015
    protocol layers used by EPP.  The security considerations described
    in these other specifications apply to this specification as well.
 
+
+
+
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 26]
+
+Internet-Draft                 idnTableMap                 February 2015
+
+
 7.  Normative References
 
    [I-D.ietf-eppext-idnmap]
               Obispo, F., "Internationalized Domain Name Mapping
               Extension for the Extensible Provisioning Protocol (EPP)",
-              draft-ietf-eppext-idnmap-01 (work in progress), January
-              2014.
+              draft-ietf-eppext-idnmap-02 (work in progress), January
+              2015.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
@@ -1449,15 +1482,6 @@ Internet-Draft                 idnTableMap                  January 2015
               Applications (IDNA): Definitions and Document Framework",
               RFC 5890, August 2010.
 
-
-
-
-
-Gould, et al.             Expires July 9, 2015                 [Page 26]
-
-Internet-Draft                 idnTableMap                  January 2015
-
-
 Appendix A.  Change History
 
 A.1.  Version 00
@@ -1474,6 +1498,20 @@ Authors' Addresses
 
    Email: jgould@verisign.com
    URI:   http://www.verisigninc.com
+
+
+
+
+
+
+
+
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 27]
+
+Internet-Draft                 idnTableMap                 February 2015
 
 
    Francisco Obispo
@@ -1509,4 +1547,22 @@ Authors' Addresses
 
 
 
-Gould, et al.             Expires July 9, 2015                 [Page 27]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gould, et al.            Expires August 8, 2015                [Page 28]
