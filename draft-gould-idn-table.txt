@@ -508,7 +508,7 @@ Internet-Draft                 idnTableMap                 February 2015
 
    <idnTable:domain>  The domain name, as defined in Section 2.2, to
        validate against the IDN Tables and IDN policies, and to retrieve
-       the matching IDN Table meta-data for.
+       the matching IDN Table meta-data.
 
    Example Domain Info Form <info> command using a U-label Domain Name:
 

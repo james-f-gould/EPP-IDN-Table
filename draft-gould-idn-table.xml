@@ -500,7 +500,7 @@ S:</epp>]]></artwork>
          
 	        <t><list hangIndent="4" style="hanging">
 			    <t hangText="&lt;idnTable:domain&gt;">The domain name, as defined in <xref target="domainName"/>, to validate 
-			    against the IDN Tables and IDN policies, and to retrieve the matching IDN Table meta-data for.</t>			    			  
+			    against the IDN Tables and IDN policies, and to retrieve the matching IDN Table meta-data.</t>			    			  
 			  </list></t>
        
        <figure>
