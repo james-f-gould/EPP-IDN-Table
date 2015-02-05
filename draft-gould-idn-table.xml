@@ -114,32 +114,7 @@
       </address>
     </author>
 
-    <author fullname="Patrik Faltstrom" initials="P.F" surname="Faltstrom">
-    <!--
-      <organization>XXX</organization>
-		-->
-		
-      <address>
-      <!--
-        <postal>
-          <street>XXX</street>
-
-          <city>XXX</city>
-
-          <region>KY</region>
-
-        </postal>
-      -->
-
-        <email>paf@frobbit.se</email>
-
-		<!--
-        <uri>XXX</uri>
-        -->
-      </address>
-    </author>
-
-    <date day="4" month="February" year="2015"/>
+    <date day="5" month="February" year="2015"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
