@@ -9,6 +9,7 @@
 <!ENTITY RFC5730 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5730.xml">
 <!ENTITY RFC5731 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5731.xml">
 <!ENTITY RFC5890 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5890.xml">
+<!ENTITY RFC7451 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7451.xml">
 <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
 <!ENTITY I-D.ietf-eppext-idnmap PUBLIC ''
    'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-eppext-idnmap.xml'>
@@ -42,7 +43,7 @@
 <?rfc inline="yes" ?>
 <!-- inline cref output -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-gould-idn-table-00" ipr="trust200902">
+<rfc category="std" docName="draft-gould-idn-table-01" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -114,7 +115,7 @@
       </address>
     </author>
 
-    <date day="5" month="February" year="2015"/>
+    <date day="2" month="March" year="2015"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -1292,22 +1293,64 @@ END]]></artwork>
    
     
     <section anchor="IANA" title="IANA Considerations">
+    
+    	<section anchor="IANA-XML-Namespace" title="XML Namespace">
          <t>
              This document uses URNs to describe XML namespaces and XML schemas
              conforming to a registry mechanism described in <xref target="RFC3688"/>.
-             One URI assignment must be completed by the IANA.
+             The following URI assignment is requested of IANA: 
          </t>
-
-         <t>Registration request for the idnTable namespace:</t>
-         
-         <t>Registration request for the XML schema:</t>
-         
+                  
          <t>URI: urn:ietf:params:xml:ns:idnTable-1.0</t>
          
-         <t>Registrant Contact: IESG</t>
+         <t>Registrant Contact: See the "Author's Address" section of this document.</t>
           
          <t>XML: See the "Formal Syntax" section of this document.</t>
+         
+       </section>
+       
+       <section anchor="EPP-Extension-Registry" title="EPP Extension Registry">
+       
+       	<t>
+   The EPP extension described in this document should be registered by
+   the IANA in the EPP Extension Registry described in <xref target="RFC7451"/>.  The
+   details of the registration are as follows:
+   </t>
+
+   <t>
+   Name of Extension: &quot;Extensible Provisioning Protocol (EPP) Internationalized Domain Name (IDN) Table Mapping&quot;
+   </t>
+   
+   <t>
+   Document status: Standards Track
+   </t>
+   
+   <t>
+   Reference: (insert reference to RFC version of this document)
+   </t>
+
+   <t>
+   Registrant Name and Email Address: IESG, &lt;iesg@ietf.org&gt;
+   </t>
+  
+   <t>
+   TLDs: Any
+   </t>
  
+   <t>
+   IPR Disclosure: None
+   </t>
+
+   <t>
+   Status: Active
+   </t>
+
+   <t>
+   Notes: None
+   </t>
+       
+       </section>
+     
     </section>
 
 
@@ -1350,14 +1393,16 @@ END]]></artwork>
 
       &RFC5890;      
 
+      &RFC7451;      
+
       &I-D.ietf-eppext-idnmap;
 
     </references>
     
    <section title="Change History">
-    <section title="Version 00" anchor="version-00">
+    <section title="Change from 00 to 01 " anchor="version-00-to-01">
       <t><list style="numbers">
-        <t>Initial version.</t>
+        <t>Amended XML Namespace section of IANA Considerations, added EPP Extension Registry section.</t>
       </list></t>
     </section>
    </section>
