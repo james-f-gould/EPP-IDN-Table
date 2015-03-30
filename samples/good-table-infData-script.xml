@@ -20,18 +20,6 @@
            <idnTable:url>
   https://www.iana.org/domains/idn-tables/tables/tld_thai_1.0.txt
            </idnTable:url>
-           <idnTable:codePoint>
-             <idnTable:point>0E01</idnTable:point>
-             <idnTable:comment>THAI LETTER KO KAI
-             </idnTable:comment>
-           </idnTable:codePoint>
-           <idnTable:codePoint>
-             <idnTable:point>0E02</idnTable:point>
-           </idnTable:codePoint>          
-           <idnTable:codeRange>
-             <idnTable:from>0030</idnTable:from>
-             <idnTable:to>0039</idnTable:to>
-           </idnTable:codeRange>          
          </idnTable:table>
       </idnTable:infData>
     </resData>

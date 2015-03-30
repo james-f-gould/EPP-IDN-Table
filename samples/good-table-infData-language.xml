@@ -21,26 +21,6 @@
            <idnTable:url>
    https://www.iana.org/domains/idn-tables/tables/tld_chi_1.0.txt
            </idnTable:url>
-           <idnTable:codePoint>
-             <idnTable:point>002D</idnTable:point>
-             <idnTable:comment lang="en">
-             HYPHEN-MINUS
-             </idnTable:comment>
-           </idnTable:codePoint>
-           <idnTable:codePoint>
-             <idnTable:point>0030</idnTable:point>
-           </idnTable:codePoint>          
-           <idnTable:codeRange>
-             <idnTable:from>3918</idnTable:from>
-             <idnTable:to>396E</idnTable:to>
-             <idnTable:comment lang="en">
-             CJK Ideograph Extension A
-             </idnTable:comment>
-           </idnTable:codeRange>          
-           <idnTable:codeRange>
-             <idnTable:from>3C6E</idnTable:from>
-             <idnTable:to>6BA8</idnTable:to>
-           </idnTable:codeRange>          
          </idnTable:table>
       </idnTable:infData>
     </resData>

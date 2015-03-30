@@ -156,29 +156,6 @@
     </restriction>
   </simpleType>
 
-  <!-- 
-  Table IDN code point.
-  -->
-  <complexType name="codePointType">
-    <sequence>
-      <element name="point" type="token"/>
-      <element name="comment" type="idnTable:descriptionType" 
-        minOccurs="0"/>
-    </sequence>
-  </complexType>
-
-  <!-- 
-  Table IDN code point range.
-  -->
-  <complexType name="codeRangeType">
-    <sequence>
-      <element name="from" type="token"/>
-      <element name="to" type="token"/>
-      <element name="comment" type="idnTable:descriptionType" 
-        minOccurs="0"/>
-    </sequence>
-  </complexType>
-
   <complexType name="descriptionType">
     <simpleContent>
       <extension base="token">
@@ -201,10 +178,6 @@
       <element name="effectiveDate" type="date" minOccurs="0"/>
       <element name="variantGen" type="boolean" minOccurs="0"/>
       <element name="url" type="anyURI" minOccurs="0"/>
-      <choice minOccurs="0" maxOccurs="unbounded">
-        <element name="codePoint" type="idnTable:codePointType"/>
-        <element name="codeRange" type="idnTable:codeRangeType"/>
-      </choice>
     </sequence>
   </complexType>
 

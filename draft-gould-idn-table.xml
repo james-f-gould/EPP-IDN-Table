@@ -43,7 +43,7 @@
 <?rfc inline="yes" ?>
 <!-- inline cref output -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-gould-idn-table-01" ipr="trust200902">
+<rfc category="std" docName="draft-gould-idn-table-02" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -115,7 +115,7 @@
       </address>
     </author>
 
-    <date day="2" month="March" year="2015"/>
+    <date day="30" month="March" year="2015"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -157,7 +157,7 @@
 			can be used to identify the matching set of IDN Tables (language or script), along with the IDN Table meta-data.</t>		
 			
 			<t hangText="&quot;Cache IDN Table Code Points&quot;">Clients can query for the complete list of IDN Tables and 
-			can get the IDN Table meta-data and optionally the code points, based on server policy, to support 
+			can get the IDN Table meta-data, based on server policy, to support 
 			pre-validation in the client.</t>	
 			
 			<t hangText="&quot;Get the IDN Table Identifier to Pass with a Domain Create&quot;">Each IDN Table includes 
@@ -643,7 +643,7 @@ S:</epp>]]></artwork>
        
          <t>The Table Info Form is used to retrieve information associated 
          with an IDN Table object.  The information provided meta-data about 
-         the IDN Table object along with the OPTIONAL code points.</t> 
+         the IDN Table object.</t> 
          
          <t>In addition to the standard EPP command elements, the &lt;info&gt; 
          command MUST contain an &lt;idnTable:info&gt; element that identifies 
@@ -712,20 +712,7 @@ C:</epp>]]></artwork>
 			    <t hangText="&lt;idnTable:effectiveDate&gt;">OPTIONAL effective date for the IDN Table.</t>			    			  
 			    <t hangText="&lt;idnTable:variantGen&gt;">OPTIONAL boolean flag indicating that domains created using the IDN Table will 
 			    have IDN variants generated.  The management of variants is up to server policy.</t>			    			  
-			    <t hangText="&lt;idnTable:url&gt;">OPTIONAL URL for downloading the IDN Table.</t>			    			  
-			    <t hangText="&lt;idnTable:codePoint&gt;">Zero or more OPTIONAL &lt;idnTable:codePoint&gt; elements for returning 
-			    the code points of the IDN Table.  The &lt;idnTable:codePoint&gt; element contains the following child elements:</t>
-			      <t><list hangIndent="4" style="hanging">
-			        <t hangText="&lt;idnTable:point&gt; or &quot;&lt;idnTable:from&gt; and &lt;idnTable:to&gt;&quot;">Contains an individual code 
-			        point or a code point range.  The code point must be expressed in uppercase, hexadecimal, and zero padded 
-			        to a minimum of 4 digits - in other words according to the standard Unicode convention but without the prefix "U+".  
-			        The individual code points and code point ranges MUST NOT specify code points that overlap.</t>  
-					 <t hangText="&lt;idnTable:comment&gt;">Server defined code point comment.  
-					 This text MUST be represented in the response language 
-					 previously negotiated with the client; an OPTIONAL "lang" attribute MAY be present 
-					 to identify the language if the negotiated value is something other than the 
-					 default value of "en" (English).</t>			    			  
-			      </list></t>
+			    <t hangText="&lt;idnTable:url&gt;">OPTIONAL URL for downloading the IDN Table with the applicable set of code points and rules.</t>			    			  
 			  </list></t>
 
           <figure>
@@ -757,26 +744,6 @@ S:           <idnTable:variantGen>true</idnTable:variantGen>
 S:           <idnTable:url>
 S:   https://www.iana.org/domains/idn-tables/tables/tld_chi_1.0.txt
 S:           </idnTable:url>
-S:           <idnTable:codePoint>
-S:             <idnTable:point>002D</idnTable:point>
-S:             <idnTable:comment lang="en">
-S:             HYPHEN-MINUS
-S:             </idnTable:comment>
-S:           </idnTable:codePoint>
-S:           <idnTable:codePoint>
-S:             <idnTable:point>0030</idnTable:point>
-S:           </idnTable:codePoint>          
-S:           <idnTable:codeRange>
-S:             <idnTable:from>3918</idnTable:from>
-S:             <idnTable:to>396E</idnTable:to>
-S:             <idnTable:comment lang="en">
-S:             CJK Ideograph Extension A
-S:             </idnTable:comment>
-S:           </idnTable:codeRange>          
-S:           <idnTable:codeRange>
-S:             <idnTable:from>3C6E</idnTable:from>
-S:             <idnTable:to>6BA8</idnTable:to>
-S:           </idnTable:codeRange>          
 S:         </idnTable:table>
 S:      </idnTable:infData>
 S:    </resData>
@@ -816,18 +783,6 @@ S:           <idnTable:variantGen>false</idnTable:variantGen>
 S:           <idnTable:url>
 S:  https://www.iana.org/domains/idn-tables/tables/tld_thai_1.0.txt
 S:           </idnTable:url>
-S:           <idnTable:codePoint>
-S:             <idnTable:point>0E01</idnTable:point>
-S:             <idnTable:comment>THAI LETTER KO KAI
-S:             </idnTable:comment>
-S:           </idnTable:codePoint>
-S:           <idnTable:codePoint>
-S:             <idnTable:point>0E02</idnTable:point>
-S:           </idnTable:codePoint>          
-S:           <idnTable:codeRange>
-S:             <idnTable:from>0030</idnTable:from>
-S:             <idnTable:to>0039</idnTable:to>
-S:           </idnTable:codeRange>          
 S:         </idnTable:table>
 S:      </idnTable:infData>
 S:    </resData>
@@ -1184,29 +1139,6 @@ BEGIN
     </restriction>
   </simpleType>
 
-  <!-- 
-  Table IDN code point.
-  -->
-  <complexType name="codePointType">
-    <sequence>
-      <element name="point" type="token"/>
-      <element name="comment" type="idnTable:descriptionType" 
-        minOccurs="0"/>
-    </sequence>
-  </complexType>
-
-  <!-- 
-  Table IDN code point range.
-  -->
-  <complexType name="codeRangeType">
-    <sequence>
-      <element name="from" type="token"/>
-      <element name="to" type="token"/>
-      <element name="comment" type="idnTable:descriptionType" 
-        minOccurs="0"/>
-    </sequence>
-  </complexType>
-
   <complexType name="descriptionType">
     <simpleContent>
       <extension base="token">
@@ -1229,10 +1161,6 @@ BEGIN
       <element name="effectiveDate" type="date" minOccurs="0"/>
       <element name="variantGen" type="boolean" minOccurs="0"/>
       <element name="url" type="anyURI" minOccurs="0"/>
-      <choice minOccurs="0" maxOccurs="unbounded">
-        <element name="codePoint" type="idnTable:codePointType"/>
-        <element name="codeRange" type="idnTable:codeRangeType"/>
-      </choice>
     </sequence>
   </complexType>
 
@@ -1403,6 +1331,12 @@ END]]></artwork>
     <section title="Change from 00 to 01 " anchor="version-00-to-01">
       <t><list style="numbers">
         <t>Amended XML Namespace section of IANA Considerations, added EPP Extension Registry section.</t>
+      </list></t>
+    </section>
+    <section title="Change from 01 to 02 " anchor="version-01-to-02">
+      <t><list style="numbers">
+        <t>Removed support for returning the idnTable:codePoint and idnTable:codeRange elements in the table info response based 
+        on the feedback at the Registration Operations Workshop (ROW), held on March 22, 2015, prior to IETF-92.</t>
       </list></t>
     </section>
    </section>
