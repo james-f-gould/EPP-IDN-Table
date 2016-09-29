@@ -43,7 +43,7 @@
 <?rfc inline="yes" ?>
 <!-- inline cref output -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-gould-idn-table-02" ipr="trust200902">
+<rfc category="std" docName="draft-gould-idn-table-03" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -115,7 +115,7 @@
       </address>
     </author>
 
-    <date day="30" month="March" year="2015"/>
+    <date day="29" month="September" year="2016"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -487,12 +487,12 @@ S:</epp>]]></artwork>
 C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
-C:    <check>
+C:    <info>
 C:      <idnTable:info
 C:       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
 C:        <idnTable:domain>idn1.example</idnTable:domain>
 C:      </idnTable:info>
-C:    </check>
+C:    </info>
 C:    <clTRID>ABC-12345</clTRID>
 C:  </command>
 C:</epp>]]></artwork>
@@ -506,12 +506,12 @@ C:</epp>]]></artwork>
 C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
-C:    <check>
+C:    <info>
 C:      <idnTable:info
 C:       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
 C:        <idnTable:domain>xn--idn1.example</idnTable:domain>
 C:      </idnTable:info>
-C:    </check>
+C:    </info>
 C:    <clTRID>ABC-12345</clTRID>
 C:  </command>
 C:</epp>]]></artwork>
@@ -663,12 +663,12 @@ S:</epp>]]></artwork>
 C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
-C:    <check>
+C:    <info>
 C:      <idnTable:info
 C:       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
 C:        <idnTable:table>CHI</idnTable:table>
 C:      </idnTable:info>
-C:    </check>
+C:    </info>
 C:    <clTRID>ABC-12345</clTRID>
 C:  </command>
 C:</epp>]]></artwork>
@@ -682,12 +682,12 @@ C:</epp>]]></artwork>
 C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
-C:    <check>
+C:    <info>
 C:      <idnTable:info
 C:       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
 C:        <idnTable:table>THAI</idnTable:table>
 C:      </idnTable:info>
-C:    </check>
+C:    </info>
 C:    <clTRID>ABC-12345</clTRID>
 C:  </command>
 C:</epp>]]></artwork>
@@ -821,12 +821,12 @@ S:</epp>]]></artwork>
 C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
-C:    <check>
+C:    <info>
 C:      <idnTable:info
 C:       xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
 C:        <idnTable:list/>
 C:      </idnTable:info>
-C:    </check>
+C:    </info>
 C:    <clTRID>ABC-12345</clTRID>
 C:  </command>
 C:</epp>]]></artwork>
@@ -1337,6 +1337,12 @@ END]]></artwork>
       <t><list style="numbers">
         <t>Removed support for returning the idnTable:codePoint and idnTable:codeRange elements in the table info response based 
         on the feedback at the Registration Operations Workshop (ROW), held on March 22, 2015, prior to IETF-92.</t>
+        <t>Fixed info command samples that referenced the &lt;check&gt; element instead of the &lt;info&gt; element.</t>
+      </list></t>
+    </section>
+    <section title="Change from 02 to 03 " anchor="version-02-to-03">
+      <t><list style="numbers">
+        <t>Ping update.</t>
       </list></t>
     </section>
    </section>

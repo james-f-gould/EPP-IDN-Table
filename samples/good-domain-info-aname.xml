@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
   <command>
-    <check>
+    <info>
       <idnTable:info
        xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
         <idnTable:domain>xn--idn1.example</idnTable:domain>
       </idnTable:info>
-    </check>
+    </info>
     <clTRID>ABC-12345</clTRID>
   </command>
 </epp>

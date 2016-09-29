@@ -2,12 +2,12 @@
 <epp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns="urn:ietf:params:xml:ns:epp-1.0">
   <command>
-    <check>
+    <info>
       <idnTable:info
        xmlns:idnTable="urn:ietf:params:xml:ns:idnTable-1.0">
         <idnTable:domain form="uLabel">idn1.example</idnTable:domain>
       </idnTable:info>
-    </check>
+    </info>
     <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
