@@ -43,7 +43,7 @@
 <?rfc inline="yes" ?>
 <!-- inline cref output -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-gould-idn-table-03" ipr="trust200902">
+<rfc category="std" docName="draft-gould-idn-table-04" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -115,7 +115,7 @@
       </address>
     </author>
 
-    <date day="29" month="September" year="2016"/>
+    <date day="17" month="April" year="2017"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -1328,19 +1328,24 @@ END]]></artwork>
     </references>
     
    <section title="Change History">
-    <section title="Change from 00 to 01 " anchor="version-00-to-01">
+    <section title="Change from 00 to 01" anchor="version-00-to-01">
       <t><list style="numbers">
         <t>Amended XML Namespace section of IANA Considerations, added EPP Extension Registry section.</t>
       </list></t>
     </section>
-    <section title="Change from 01 to 02 " anchor="version-01-to-02">
+    <section title="Change from 01 to 02" anchor="version-01-to-02">
       <t><list style="numbers">
         <t>Removed support for returning the idnTable:codePoint and idnTable:codeRange elements in the table info response based 
         on the feedback at the Registration Operations Workshop (ROW), held on March 22, 2015, prior to IETF-92.</t>
         <t>Fixed info command samples that referenced the &lt;check&gt; element instead of the &lt;info&gt; element.</t>
       </list></t>
     </section>
-    <section title="Change from 02 to 03 " anchor="version-02-to-03">
+    <section title="Change from 02 to 03" anchor="version-02-to-03">
+      <t><list style="numbers">
+        <t>Ping update.</t>
+      </list></t>
+    </section>
+    <section title="Change from 03 to 04" anchor="version-03-to-04">
       <t><list style="numbers">
         <t>Ping update.</t>
       </list></t>
